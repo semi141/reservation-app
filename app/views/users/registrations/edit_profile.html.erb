@@ -1,0 +1,28 @@
+<h2>プロフィール編集</h2>
+
+<%= form_for(resource, as: resource_name, url: update_profile_user_path, html: { method: :put, multipart: true }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+	<div class="field">
+    <%= f.label :icon, "プロフィール画像" %><br />
+    <%= f.file_field :icon %>
+
+    <% if resource.persisted? && resource.icon.attached? && !resource.icon.blob.new_record? %>
+      <%= image_tag(resource.icon, width: 100, height: 100) %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, "アカウント名" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile, "自己紹介" %><br />
+    <%= f.text_area :profile, maxlength: 500 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "変更して保存する" %>
+  </div>
+<% end %>

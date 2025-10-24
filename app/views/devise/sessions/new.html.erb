@@ -1,0 +1,55 @@
+<h2>ログイン</h2>
+
+<% if flash[:alert] %>
+  <div class="error-messages">
+    <ul>
+      <li><%= flash[:alert] %></li>
+    </ul>
+  </div>
+<% end %>
+
+
+<% resource ||= User.new %>
+<% resource_name ||= :user %>
+<% devise_mapping ||= Devise.mappings[:user] %>
+
+<% if resource.errors.any? %>
+  <div class="error-messages">
+    <h2><%= pluralize(resource.errors.count, "件のエラー") %>があります：</h2>
+    <ul>
+      <% resource.errors.messages.each do |attribute, messages| %>
+        <% messages.each do |msg| %>
+          <li><%= resource.class.human_attribute_name(attribute) %> <%= msg %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with scope: :user, url: user_session_path, html: { data: { turbo: false } }, local: true do |f| %>
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "パスワード" %><br>
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, "ログイン状態を保持する" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "ログイン" %>
+  </div>
+<% end %>
+
+  <p>
+    <%= link_to "新規登録", new_user_registration_path %> |
+    <%= link_to "パスワードをお忘れですか？", new_user_password_path %>
+  </p>

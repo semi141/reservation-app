@@ -1,0 +1,52 @@
+<h1>施設詳細</h1>
+
+<% if @room.image.attached? %>
+  <%= image_tag @room.image, style: "max-width: 300px; height: auto;" %>
+<% else %>
+  <%= image_tag "default_room.jpg", style: "max-width: 300px; height: auto;" %>
+<% end %>
+<h2><%= @room.name %></h2>
+<p><strong>紹介文：</strong> <%= @room.detail %></p>
+<p><strong>宿泊料金：</strong> <%= number_to_currency(@room.price, unit: "¥") %> / 日</p>
+<p><strong>住所：</strong> <%= @room.address %></p>
+<p><strong>定員：</strong> <%= @room.capacity %> 名</p>
+
+<!-- 予約ボタン追加 -->
+<%= link_to '予約する', new_room_reservation_path(@room), class: "btn btn-primary" %>
+
+<!-- 前のページに戻るリンク -->
+<%= back_button(request.referer || rooms_path) %>
+
+<%= link_to '削除', '#',
+      class: 'btn btn-danger',
+      data: { "bs-toggle": "modal", "bs-target": "#deleteModal" } %>
+
+<%= back_to_index_button(rooms_path) %>
+
+<!-- 削除確認モーダル -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteModalLabel">施設の削除確認</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+      </div>
+      <div class="modal-body">
+        <p>以下の施設を削除します。よろしいですか？</p>
+        <ul>
+          <li>施設名：<%= @room.name %></li>
+          <li>住所：<%= @room.address %></li>
+          <li>宿泊料金：<%= number_to_currency(@room.price, unit: "¥") %> / 日</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+
+        <%= button_to '削除する', room_path(@room),
+              method: :delete,
+              form: { data: { turbo: false } },
+              class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>

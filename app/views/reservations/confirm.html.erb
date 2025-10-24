@@ -1,0 +1,18 @@
+<h1>予約確認</h1>
+
+<p><strong>施設名：</strong> <%= @room.name %></p>
+<p><strong>チェックイン：</strong> <%= @reservation.check_in.strftime('%Y/%m/%d') %></p>
+<p><strong>チェックアウト：</strong> <%= @reservation.check_out.strftime('%Y/%m/%d') %></p>
+<p><strong>宿泊日数：</strong> <%= @reservation.stay_days %>泊</p>
+<p><strong>人数：</strong> <%= @reservation.number_of_people %>名</p>
+<p><strong>合計料金：</strong> <%= number_with_delimiter(@reservation.total_price) %>円</p>
+
+<%= form_with(url: room_reservations_path(@reservation.room), method: :post, local: true, data: { turbo: false }) do %>
+  <%= hidden_field_tag "reservation[room_id]", @reservation.room.id %>
+  <%= hidden_field_tag "reservation[check_in]", @reservation.check_in %>
+  <%= hidden_field_tag "reservation[check_out]", @reservation.check_out %>
+  <%= hidden_field_tag "reservation[number_of_people]", @reservation.number_of_people %>
+  <%= submit_tag "予約を確定する" %>
+<% end %>
+
+<%= link_to "戻る", new_room_reservation_path(@room), class: "btn btn-outline-secondary" %>

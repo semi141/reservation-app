@@ -1,0 +1,24 @@
+<h2>予約を編集</h2>
+
+<%= form_with(model: @reservation, local: true) do |f| %>
+  <div>
+    <%= f.label :check_in, "チェックイン日" %><br>
+    <%= f.date_field :check_in %>
+  </div>
+
+  <div>
+    <%= f.label :check_out, "チェックアウト日" %><br>
+    <%= f.date_field :check_out %>
+  </div>
+
+  <div>
+    <%= f.label :number_of_people, "人数" %><br>
+    <%= f.number_field :number_of_people %>
+  </div>
+
+  <div>
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', reservation_path(@reservation) %>

@@ -1,0 +1,45 @@
+<h2>予約詳細</h2>
+
+<p>施設名：<%= @reservation.room.name %></p>
+<p>チェックイン日：<%= @reservation.check_in.strftime("%Y/%m/%d %H:%M") %></p>
+<p>チェックアウト日：<%= @reservation.check_out.strftime("%Y/%m/%d %H:%M") %></p>
+<p>宿泊日数：<%= @reservation.stay_days %>泊</p>
+<p>合計金額：<%= number_with_delimiter(@reservation.total_price) %>円</p>
+
+<hr>
+
+<%= my_reservations_button %>
+<%= link_to '戻る', request.referer || reservations_path, class: 'btn btn-secondary' %>
+<%= link_to '編集', edit_reservation_path(@reservation), class: 'btn btn-primary' %> |
+<%= link_to '削除', '#',
+  class: 'btn btn-danger',
+  data: { "bs-toggle": "modal", "bs-target": "#deleteModal" } %>
+
+
+<!-- 削除確認モーダル -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="deleteModalLabel">予約の削除確認</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+      </div>
+      <div class="modal-body">
+        <p>以下の予約を削除します。よろしいですか？</p>
+        <ul>
+          <li>施設名：<%= @reservation.room.name %></li>
+          <li>チェックイン：<%= @reservation.check_in.strftime('%Y/%m/%d %H:%M') %></li>
+          <li>チェックアウト：<%= @reservation.check_out.strftime('%Y/%m/%d %H:%M') %></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+        <%= link_to '削除する', reservation_path(@reservation),
+              data: { turbo_method: :delete },
+              class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= back_to_index_button(rooms_path) %>

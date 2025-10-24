@@ -1,0 +1,15 @@
+// 自作のスタイルはここに書く
+// 例:
+body {
+  background-color: #f8f9fa;
+}
+
+.modal-backdrop.show {
+  opacity: 0.3 !important;
+}
+
+.error-messages {
+  color: red;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
