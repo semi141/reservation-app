@@ -119,7 +119,11 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
+<<<<<<< HEAD
     json (2.15.1)
+=======
+    json (2.15.2)
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -242,9 +246,15 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
+<<<<<<< HEAD
     rubyzip (3.2.0)
     securerandom (0.4.1)
     selenium-webdriver (4.37.0)
+=======
+    rubyzip (3.2.1)
+    securerandom (0.4.1)
+    selenium-webdriver (4.38.0)
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -303,7 +313,11 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   puma (>= 5.0)
+<<<<<<< HEAD
   rails (~> 7.2.2, >= 7.2.2.1)
+=======
+  rails (~> 7.2.2, >= 7.2.2.2)
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails

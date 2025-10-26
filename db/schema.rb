@@ -11,9 +11,12 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
+<<<<<<< HEAD
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+=======
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,10 +46,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
   end
 
   create_table "reservations", force: :cascade do |t|
+<<<<<<< HEAD
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
     t.date "check_in"
     t.date "check_out"
+=======
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.date "check_in"
+    t.date "check_out"
+    t.integer "guests"
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "number_of_people"
@@ -64,9 +75,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
     t.datetime "updated_at", null: false
     t.integer "capacity"
     t.string "image"
+<<<<<<< HEAD
     t.bigint "user_id"
     t.string "detail"
     t.index ["user_id"], name: "index_rooms_on_user_id"
+=======
+    t.string "detail"
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,5 +102,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
+<<<<<<< HEAD
   add_foreign_key "rooms", "users"
+=======
+>>>>>>> aad7380 (課題2 v2: マイグレーションエラー修正・不要ファイル削除・Gem追加)
 end
