@@ -11,9 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,15 +40,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "room_id", null: false
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.date "check_in"
     t.date "check_out"
-    t.integer "number_of_people"
     t.integer "guests"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "number_of_people"
+    t.string "status"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -61,12 +58,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
     t.text "description"
     t.integer "price"
     t.string "address"
-    t.integer "capacity"
-    t.string "image"
-    t.bigint "user_id"
-    t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "capacity"
+    t.string "image"
+    t.integer "user_id"
+    t.string "detail"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
@@ -76,10 +73,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_24_050744) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
-    t.string "profile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
